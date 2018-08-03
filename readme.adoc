@@ -1,0 +1,42 @@
+= Template Matching
+
+== Summary
+
+openCV template matching, java 8, javacpp-presets, gradle
+
+== Description
+
+The solution is almost a shameless rip-off of
+link:https://docs.opencv.org/3.4.2/de/da9/tutorial_template_matching.html[openCV tutorial]
+
+==== Assumptions
+
+- Template is smaller than the image (both dimensions)
+- On wrong parameters, exception with a message is thrown
+
+==== Possible improvements
+
+Still false positives happen. Resized templates are not detected.
+
+Potential optimization and future experiments:
+
+- reduce false positives: on found template use phash / compare histograms / features detection
+- find resized, distorted templates: maybe some kind of sliding window with phash
+
+== Build & Run
+
+.build
+  ./gradlew build
+
+.run
+  java -jar build/libs/template-match-all.jar image1 image2
+
+Tested on ubuntu 14.04 and docker openjdk:8.
+Although on alpine it failed due to problems with loading native openCV libs.
+
+---
+==== Attributions
+Images for testing from:
+
+- https://www.pexels.com/photo/duckling-on-black-soil-during-daytime-162140/
+- https://cloudinary.com/blog/how_to_automatically_identify_similar_images_using_phash
